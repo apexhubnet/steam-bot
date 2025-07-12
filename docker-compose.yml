@@ -1,0 +1,24 @@
+services:
+  steam_bot:
+    build: ./bot
+    hostname: steam_bot
+    container_name: steam_bot
+    image: apexhub/steam_bot:1.0
+    env_file: .env
+    environment:
+      STEAM_API_KEY: ${STEAM_API_KEY}
+      APP_ID: ${APP_ID}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      INTERVAL_MINUTES: ${INTERVAL_MINUTES}
+      TZ: Europe/Moscow
+    restart: always
+    networks:
+      - apexhub_net
+
+networks:
+  apexhub_net:
+    external: true
+    driver: bridge
